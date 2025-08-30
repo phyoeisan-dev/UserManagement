@@ -1,0 +1,62 @@
+﻿@model UserManagement.Models.RegisterViewModel
+
+<div class="card p-4">
+    <h2 class="text-center">Sign Up</h2>
+    <form asp-action="Register" method="post">
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" type="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword"></label>
+            <input asp-for="ConfirmPassword" type="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ContactNo"></label>
+            <input asp-for="ContactNo" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="NRCNo"></label>
+            <input asp-for="NRCNo" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-success w-100">Register</button>
+    </form>
+</div>
+
+<hr />
+
+<h3>Recently Registered User</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contact No</th>
+            <th>NRC No</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.NewUser != null)
+        {
+            <tr>
+                <td>@ViewBag.NewUser.UserName</td>
+                <td>@ViewBag.NewUser.ContactNo</td>
+                <td>@ViewBag.NewUser.NRCNo</td>
+                <td>@ViewBag.NewUser.Email</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@ViewBag.NewUser.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@ViewBag.NewUser.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
